@@ -4,6 +4,7 @@
 $(document).ready(function() {
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
+  jQuery(".best_in_place_nil").best_in_place()
 });
 
 function inspect(obj, maxLevels, level)
