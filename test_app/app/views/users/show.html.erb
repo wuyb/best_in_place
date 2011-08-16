@@ -49,7 +49,7 @@
     <tr>
       <td>User description</td>
       <td>
-        <%= best_in_place @user, :description, :type => :textarea, :sanitize => false %>
+        <%= best_in_place @user, :description, :type => :textarea, :sanitize => false , :nil=>'click to edit', :nil_class=>'best_in_place_nil'%>
       </td>
   </table>
   <br />

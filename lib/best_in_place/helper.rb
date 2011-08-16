@@ -19,8 +19,7 @@ module BestInPlace
         value = fieldValue ? opts[:collection][1] : opts[:collection][0]
         collection = opts[:collection].to_json
       end
-      out = "<span"
-      out << " class='#{opts[:nil_class] ? opts[:nil_class].to_s : 'best_in_place'}'"
+      out = "<span class='best_in_place'"
       out << " id='best_in_place_#{object.class.to_s.gsub("::", "_").underscore}_#{field}'"
       out << " data-url='#{opts[:path].blank? ? url_for(object).to_s : url_for(opts[:path])}'"
       out << " data-object='#{object.class.to_s.gsub("::", "_").underscore}'"
@@ -28,6 +27,7 @@ module BestInPlace
       out << " data-attribute='#{field}'"
       out << " data-activator='#{opts[:activator]}'" unless opts[:activator].blank?
       out << " data-nil='#{opts[:nil].to_s}'" unless opts[:nil].blank?
+      out << " data-nil-class='#{opts[:nil_class].to_s}'" unless opts[:nil_class].blank?
       out << " data-type='#{opts[:type].to_s}'"
       out << " data-inner-class='#{opts[:inner_class].to_s}'" if opts[:inner_class]
       if !opts[:sanitize].nil? && !opts[:sanitize]

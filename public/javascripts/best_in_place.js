@@ -89,6 +89,7 @@ BestInPlaceEditor.prototype = {
       self.objectName    = self.objectName    || jQuery(this).attr("data-object");
       self.attributeName = self.attributeName || jQuery(this).attr("data-attribute");
       self.nil           = self.nil           || jQuery(this).attr("data-nil");
+      self.nil_class     = self.nil_class     || jQuery(this).attr("data-nil-class");
       self.inner_class   = self.inner_class   || jQuery(this).attr("data-inner-class");
     });
 
@@ -108,6 +109,7 @@ BestInPlaceEditor.prototype = {
     self.attributeName = self.element.attr("data-attribute")    || self.attributeName;
     self.activator     = self.element.attr("data-activator")    || self.element;
     self.nil           = self.element.attr("data-nil")          || self.nil      || "-";
+    self.nil_class     = self.element.attr("data-nil-class")	|| self.nil_class || "best_in_place"
     self.inner_class   = self.element.attr("data-inner-class")  || self.inner_class   || null;
 
     if (!self.element.attr("data-sanitize")) {
@@ -133,6 +135,7 @@ BestInPlaceEditor.prototype = {
     {
       this.isNil = true
       this.element.html(this.nil)
+      this.element.context.className = this.nil_class
     }
   },
 
@@ -176,6 +179,11 @@ BestInPlaceEditor.prototype = {
 
   loadSuccessCallback : function(data) {
     this.element.html(data[this.objectName]);
+	if (this.element.html() != "" && this.element.html() != this.nil) {
+		this.element.context.className = 'best_in_place'
+	} else {
+		this.element.context.className =  this.nil_class
+	}
     // Binding back after being clicked
     $(this.activator).bind('click', {editor: this}, this.clickHandler);
   },
